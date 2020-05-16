@@ -1,0 +1,130 @@
+<html>
+
+<head>
+  <title>Fintech Assoc. Test Task</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+
+<body>
+  <button id="deploy">Создать контракт</button>
+  <button id="description">Добавить описание</button>
+  <button id="register">Добавить участника</button>
+  <button id="verify">Проверить, зарегистрирован ли участник</button>
+
+  <div>
+    Приватный ключ:
+    <pre>
+      32713D8A9C35108645380519B08AE28B24C93FD275B276CC0DA3D4B2793C9FAE
+    </pre>
+  </div>
+
+  <script lang="text/javascript">
+    const web3 = new Web3('https://rinkeby.infura.io/v3/646dbe0a8b274b56adb669bf94b517fd');
+    const contractInterface = '[{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"constant":true,"inputs":[],"name":"meetingDescription","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"passportHashes","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"string","name":"description","type":"string"}],"name":"addDescription","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"string","name":"passport","type":"string"}],"name":"registerMember","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"string","name":"passport","type":"string"}],"name":"verifyMemberRegistration","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"}]';
+    const contractBytecode = '0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610840806100606000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c8063638cf01d146100675780638da5cb5b1461013a57806399731d1c14610184578063a5871d91146101c6578063e3ffe1ca14610281578063f6938ed914610304575b600080fd5b6101206004803603602081101561007d57600080fd5b810190808035906020019064010000000081111561009a57600080fd5b8201836020820111156100ac57600080fd5b803590602001918460018302840111640100000000831117156100ce57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506103bf565b604051808215151515815260200191505060405180910390f35b61014261048a565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6101b06004803603602081101561019a57600080fd5b81019080803590602001909291905050506104af565b6040518082815260200191505060405180910390f35b61027f600480360360208110156101dc57600080fd5b81019080803590602001906401000000008111156101f957600080fd5b82018360208201111561020b57600080fd5b8035906020019184600183028401116401000000008311171561022d57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192905050506104d0565b005b6102896105ec565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156102c95780820151818401526020810190506102ae565b50505050905090810190601f1680156102f65780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6103bd6004803603602081101561031a57600080fd5b810190808035906020019064010000000081111561033757600080fd5b82018360208201111561034957600080fd5b8035906020019184600183028401116401000000008311171561036b57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f82011690508083019250505050505050919291929050505061068a565b005b600080826040516020018082805190602001908083835b602083106103f957805182526020820191506020810190506020830392506103d6565b6001836020036101000a038019825116818451168082178552505050505050905001915050604051602081830303815290604052805190602001209050600080905060008090505b60028054905081101561047f57826002828154811061045c57fe5b9060005260206000200154141561047257600191505b8080600101915050610441565b508092505050919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600281815481106104bc57fe5b906000526020600020016000915090505481565b6104d9816103bf565b1561054c576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601c8152602001807f50617373706f727420616c72656164792072656769737465726565640000000081525060200191505060405180910390fd5b6002816040516020018082805190602001908083835b602083106105855780518252602082019150602081019050602083039250610562565b6001836020036101000a03801982511681845116808217855250505050505090500191505060405160208183030381529060405280519060200120908060018154018082558091505090600182039060005260206000200160009091929091909150555050565b60018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156106825780601f1061065757610100808354040283529160200191610682565b820191906000526020600020905b81548152906001019060200180831161066557829003601f168201915b505050505081565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161461074c576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260118152602001807f596f7520617265206e6f74206f776e657200000000000000000000000000000081525060200191505060405180910390fd5b8060019080519060200190610762929190610766565b5050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106107a757805160ff19168380011785556107d5565b828001600101855582156107d5579182015b828111156107d45782518255916020019190600101906107b9565b5b5090506107e291906107e6565b5090565b61080891905b808211156108045760008160009055506001016107ec565b5090565b9056fea265627a7a72315820699ec8405df96178658452313b69b03fbd8a6bfe4b161f8ad92e448c01985f9064736f6c63430005100032';
+    const fromAddress = '0x6e0965c684312a0c5824b5d2eE1F60aC161210ee';
+
+    /**
+     * Биндим обработчики кнопок
+     */
+    document.getElementById('deploy').addEventListener('click', deployContract);
+    document.getElementById('description').addEventListener('click', addDescription);
+    document.getElementById('register').addEventListener('click', registerMember);
+    document.getElementById('verify').addEventListener('click', verifyMemberRegistration);
+
+    /**
+     * Объявляем обработчик деплоя контракта
+     */
+    function deployContract() {
+      const privateKey = window.prompt('Введите приватный ключ:');
+
+      // Создаем контракт
+      const contract = createContract();
+      const contractABI = contract.deploy().encodeABI();
+
+      // Создаем и отправляем транзакцию
+      signTransaction(contractABI, privateKey)
+        .then(({ rawTransaction }) => web3.eth.sendSignedTransaction(rawTransaction))
+        .then(({ contractAddress }) => {
+          window.localStorage.setItem('contractAddress', contractAddress);
+          window.alert(`Успешно. Адрес контракта: ${contractAddress}`);
+        })
+        .catch(handlePromiseError);
+    }
+
+    /**
+     * Объявляем обработчик добавления описания
+     */
+    function addDescription() {
+      const privateKey = window.prompt('Введите приватный ключ:');
+      const description = window.prompt('Введите описание');
+
+      // Создаем контракт
+      const contract = createContract();
+      const methodCallABI = contract.methods.addDescription(description).encodeABI();
+
+      // Создаем и отправляем транзакцию
+      signTransaction(methodCallABI, privateKey, window.localStorage.getItem('contractAddress'))
+        .then(({ rawTransaction }) => web3.eth.sendSignedTransaction(rawTransaction))
+        .then(() => window.alert('Успешно'))
+        .catch(handlePromiseError);
+    }
+
+    /**
+     * Объявляем обработчик регистрации участника
+     */
+    function registerMember() {
+      const privateKey = window.prompt('Введите приватный ключ:');
+      const passport = window.prompt('Введите номер паспорта');
+
+      // Создаем контракт
+      const contract = createContract();
+      const methodCallABI = contract.methods.registerMember(passport).encodeABI();
+
+      // Создаем и отправляем транзакцию
+      signTransaction(methodCallABI, privateKey, window.localStorage.getItem('contractAddress'))
+        .then(({ rawTransaction }) => web3.eth.sendSignedTransaction(rawTransaction))
+        .then(() => window.alert('Успешно'))
+        .catch(handlePromiseError);
+    }
+
+    /**
+     * Объявляем обработчик проверки регистрации участника
+     */
+    function verifyMemberRegistration() {
+      const privateKey = window.prompt('Введите приватный ключ:');
+      const passport = window.prompt('Введите номер паспорта');
+
+      // Проверяем статус регистрации участника (для этого не нужно создавать транзацкию)
+      const contract = createContract(window.localStorage.getItem('contractAddress'));
+      contract.methods.verifyMemberRegistration(passport).call()
+        .then(result => window.alert(result ? 'Участник зарегистрирован' : 'Участник не зарегистрирован'))
+        .catch(handlePromiseError);
+    }
+
+    /**
+     * Вспомогательные функции
+     */
+    function handlePromiseError(e) {
+      window.alert('Ошибка. Детали ошибки в консоли');
+      console.error(e);
+    }
+
+    function createContract(contractAddress = null) {
+      return new web3.eth.Contract(JSON.parse(contractInterface), contractAddress, {
+        from: fromAddress,
+        data: contractBytecode
+      });
+    }
+
+    function signTransaction(data, privateKey, to) {
+      return web3.eth.accounts.signTransaction({
+        data: data,
+        to: to,
+        gas: '1000000'
+      }, `0x${privateKey}`)
+    }
+  </script>
+</body>
+
+</html>
